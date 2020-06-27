@@ -77,7 +77,14 @@ class App extends Component {
 
                 </Fragment>
               )}></Route>
-              <Route exact path='/gitfinder' component></Route>
+
+              <Route exact path='/gitfinder' render={props => (
+                <Fragment>
+                  <Search SearchUser={this.SearchUser} ClearUser={this.ClearUser} showClear={this.state.users.length > 0 ? true : false} setAlert={this.setAlert} />
+                  <Users loading={this.state.loading} users={this.state.users} />
+
+                </Fragment>
+              )}></Route>
               <Route exact path='/about' component={About}></Route>
               <Route exact path='/user/:login' render={props => (
                 <User {...props} getUser={this.getUser} getUserRepos={this.getUserRepos} user={this.state.user} repos={this.state.repos} loading={this.props.loading}></User>
